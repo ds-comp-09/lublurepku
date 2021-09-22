@@ -6,14 +6,14 @@ EXPOSE 3000
 FROM node:dubnium AS build
 RUN npm install -g @angular/cli@~8.3.4
 
-WORKDIR ./
+WORKDIR ./app
 
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY package.json ./
 RUN npm install
 
 # Bundle app source
-COPY . ./app
+COPY ./ ./
 RUN ng build
 
 #API_URL
