@@ -13,7 +13,7 @@ COPY package.json /usr/src/app/
 RUN npm install
 
 # Bundle app source
-COPY . /usr/src/app
+COPY . .
 RUN ng build
 
 #API_URL
