@@ -1,13 +1,10 @@
 name: Build a Docker image and Push it to ACR
-
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  workflow_dispatch:
-
+    branches:
+      - master
+    paths:
+      - content-web/*
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +17,9 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - run: |
-          docker build -f /home/runner/work/lublurepku/lublurepku/content-web/Dockerfile . -t fabmedicalzontzon.azurecr.io/web:${{ github.sha }}
-          docker push fabmedicalzontzon.azurecr.io/web:${{ github.sha }}
+      - run: docker build "$GITHUB_WORKSPACE/content-api" -f  "content-api/Dockerfile" -t fabmedicalzontzon.azurecr.io/api:${{ github.sha }}
+      - run: docker push fabmedicalmds.azurecr.io/content-api:${{ github.sha }}
+      - run: docker build "$GITHUB_WORKSPACE/content-web" -f  "content-web/Dockerfile" -t fabmedicalzontzon.azurecr.io/web:${{ github.sha }} 
+      - run: docker push fabmedicalmds.azurecr.io/content-web:${{ github.sha }}
+      - run:  docker build "$GITHUB_WORKSPACE/content-init" -f  "content-init/Dockerfile" -t fabmedicalzontzon.azurecr.io/init:${{ github.sha }} 
+      - run:  docker push fabmedicalmds.azurecr.io/content-init:${{ github.sha }}
