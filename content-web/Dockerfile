@@ -17,7 +17,7 @@ COPY . /usr/src/app
 RUN ng build 
 
 #API_URL
-ENV CONTENT_API_URL=http://localhost:3001 
+ENV CONTENT_API_URL=http://20.71.108.227:3001/
 
 FROM base as final
 WORKDIR /usr/src/app
