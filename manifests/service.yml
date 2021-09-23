@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: "fabmedicalzon-9c56"
+    labels:
+        app: "fabmedicalzon-9c56"
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: http
+    selector:
+        app: "fabmedicalzon-9c56"
