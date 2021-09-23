@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: "fabmedicalzon-8757"
+    labels:
+        app: "fabmedicalzon-8757"
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 3001
+      targetPort: 3001
+      protocol: TCP
+      name: http
+    selector:
+        app: "fabmedicalzon-8757"
