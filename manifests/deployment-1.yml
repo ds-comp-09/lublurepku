@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "fabmedicalzon-8757"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "fabmedicalzon-8757"
+  template:
+    metadata:
+      labels:
+        app: "fabmedicalzon-8757"
+    spec:
+      containers:
+        - name: "fabmedicalzon-8757"
+          image: "fabmedicalzontzon.azurecr.io/fabmedicalzon"
+          ports:
+          - containerPort: 3001
